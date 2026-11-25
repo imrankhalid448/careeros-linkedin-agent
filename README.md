@@ -1,7 +1,25 @@
-# Personal Career & LinkedIn AI Agent (100% Free & Local)
+# CareerOS — Personal LinkedIn & Career AI Agent (100% Free & Local)
 
-A modular, local-first personal AI agent built with **React + FastAPI + SQLite** and powered by **Ollama** (100% free local AI) by default.  
-Designed with a **pluggable Platform Connector architecture** (`backend/app/connectors/`) so LinkedIn works first and additional platforms (GitHub, X/Twitter, Gmail, Portfolio) can be added cleanly later.
+[![CI](https://github.com/imrankhalid448/careeros-linkedin-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/imrankhalid448/careeros-linkedin-agent/actions/workflows/ci.yml)
+
+A modular, local-first personal AI agent built with **React + FastAPI + SQLite** and powered by **Ollama (`qwen2.5:7b`)** by default.  
+Designed with a **pluggable Platform Connector architecture** (`backend/app/connectors/`) so LinkedIn works first via official OAuth 2.0 and additional platforms (GitHub, X/Twitter, Gmail, Portfolio) plug in cleanly.
+
+---
+
+## Architecture
+
+```mermaid
+flowchart LR
+    UI["React + Vite Dashboard"] --> API["FastAPI Backend"]
+    API --> Chat["Unified Agent Orchestrator"]
+    API --> AI["AI Adapter (Local Ollama / Optional Cloud)"]
+    API --> Img["Image Provider (FLUX / Pollinations / Local Card)"]
+    API --> DB[("SQLite (data/app.db) + Fernet Tokens")]
+    API --> Reg["PlatformConnector Registry"]
+    Reg --> LI["LinkedIn Official OAuth 2.0 + REST API"]
+    Reg --> Ext["Future Slots: GitHub / X / Gmail"]
+```
 
 ---
 
